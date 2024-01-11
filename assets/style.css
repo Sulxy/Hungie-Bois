@@ -9,6 +9,14 @@
 /* LANDING PAGE CSS */
 /* Make header bigger */
 /* Make background image full screen */
+
+html {
+    background-image: url("/assets/pizza-background-image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
 .landing-page {
   background-position: center;
   display: flex;
@@ -21,6 +29,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  height: 100%;
 }
 .landing-page-container {
   display: flex;
@@ -42,19 +51,4 @@
   color: #f0ea48;
   background-color: #f04a60;
   border-radius: 10px;
-}
-
-#landing-page-background-image {
-  height: 100%;
-  width: 100%;
-  /* The image used */
-  background-image: url("assets/images/pizza-background-image");
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
