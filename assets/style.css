@@ -6,15 +6,8 @@ html {
     height: 100%;
 }
 
-#search-section {
-  display: list-item;
-}
-
-#options {
-  display: none;
-} 
-
-.landing-page {
+/* (to-be-deleted-holding-for-modal-stylings).html */
+/* .landing-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,9 +58,23 @@ html {
   width: 25%;
 }
 
-
-
 .modal-card-foot {
   display: flex;
   justify-content: center;
+}
+*/
+
+/* mainpage.html */
+#landing-page-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px;
+  color: #f0ea48;
+  background-color: #f04a60;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.yass-pass {
+  /* Unsure how to center these buttons */ 
 }
