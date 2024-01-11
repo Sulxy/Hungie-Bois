@@ -25,15 +25,36 @@
     <div class="landing-page-container" class="modal">
       <div class="landing-page" id="landing-page-body">
         <p>Click the button below for restaurant options!</p>
-        <button
-          class="is-primary"
-          class="landing-page"
-          id="landing-page-modal-button"
-        >
-          Click Me!
-        </button>
+        <button class="is-primary" class="landing-page" id="landing-page-modal-button">Click Me!</button>
+      
       </div>
     </div>
+
+      <div class="modal is-active"> 
+        <div class="modal-background"></div>
+          <div class="modal-card">
+
+        <header class="modal-card-head">
+          <p class="modal-card-title">Search Parameters</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+          <label class="checkbox"><input type="checkbox">Delivery</label>
+          <label class="checkbox"><input type="checkbox">Drive-Through</label>
+          <label class="checkbox"><input type="checkbox">Carryout</label>
+          <label class="checkbox"><input type="checkbox">Dine-In</label>
+        </section>
+
+        <footer class="modal-card-foot">
+          <button class="button is-warning">Submit</button>
+          <button class="button is-danger has-text-black">Cancel</button>
+        </footer>
+          </div>
+      </div>
+
+
+
 
     <script src="assets/javascript.js"></script>
   </body>
