@@ -14,8 +14,6 @@ html {
   display: none;
 } 
 
-/* LANDING PAGE(s) CSS */
-
 .landing-page {
   display: flex;
   flex-direction: column;
@@ -45,13 +43,31 @@ html {
     border-radius: 10px;
 }
 
-.modal-card-body {
+.modal-card-head {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+ .modal-card-body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    
 }
 
 .modal-card-body > * {
-    width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: center;
+  width: 25%;
+}
+
+
+
+.modal-card-foot {
+  display: flex;
+  justify-content: center;
 }
