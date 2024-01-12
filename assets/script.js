@@ -1,3 +1,33 @@
+var googleAPI_KEY = "";
+var openWeatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
+
+// Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
+var weatherTileInfo = document.querySelector(".weather-card");
+var createWeatherCard = (index) => {
+    var tempFahrenheit = Math.floor((weatherItem.main.temp - 273.15) * 9/5 + 32); // Convert temperature from Kelvin to Fahrenheit and remove decimal digits
+    var windSpeed = Math.floor(weatherItem.wind.speed); // Drop the integers after the decimal in the wind speed
+    if(index === 0) { // Big weather card
+         // Small weather cards
+        return `<article class="tile is-child box has-background-danger weather-card">
+                    <p class="title has-text-warning has-text-centered">Weather</p>
+                    <p class="subtitle has-text-warning has-text-centered">(YYYY-MM-DD)</p>
+                    <p>(${weatherItem.dt_txt.split(" ")[0]})</p>
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="weather icon">
+                    <div class="content has-text-warning has-text-centered">
+                    <p>Temp: ${tempFahrenheit}°F</p>
+                    <div class="content has-text-warning has-text-centered">
+                    <p>Wind: ${windSpeed} MPH</p>
+                    <div class="content has-text-warning has-text-centered">
+                    <p>Humidity: ${weatherItem.main.humidity}%</p>
+                    <div class="content has-text-warning has-text-centered">
+                    <p>Feels Like: ${Math.floor((weatherItem.main.feels_like - 273.15) * 9/5 + 32)}°F</p>
+                </article>`;}
+}
+
+// Function to get the weather data from OpenWeather API
+// Function to get the user's location data from google places API
+
+// Closes the modal when you click a button, click outside of it, or hit escape.
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
