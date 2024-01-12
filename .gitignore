@@ -1,0 +1,6 @@
+# https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# https://git-scm.com/docs/gitignore
+
+
+#Ignored/Non-Publicly Shown Files
+.env

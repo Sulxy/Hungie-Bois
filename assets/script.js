@@ -1,5 +1,8 @@
-var googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM";
-var openWeatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
+// ${process.env.googleAPI_KEY} to get the google API KEY
+// ${process.env.openweatherAPI_KEY} to get the Openweather API KEY
+// -----------------------------------------------------------------
+
+
 
 // Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
 var weatherTileInfo = document.querySelector(".weather-card");
@@ -75,23 +78,3 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
