@@ -24,6 +24,9 @@ var createWeatherCard = (index) => {
                 </article>`;}
 }
 
+// Function to get the weather data from OpenWeather API
+// Function to get the user's location data from google places API
+
 // Closes the modal when you click a button, click outside of it, or hit escape.
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
