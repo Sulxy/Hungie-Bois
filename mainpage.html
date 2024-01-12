@@ -9,79 +9,86 @@
     <link rel="stylesheet" href="assets/style.css" />
   </head>
 
-    <body class="bg-img">
+    <body class="bg-img" alt="yellow background with a pizza in the bottom right corner">
 
         <header>
             <h1 class="landing-page" id="landing-page-header">Hungie?</h1>
         </header>
 
         <div class="tile is-ancestor">
-            <div class="tile is-parent">
+            <div class="tile is-parent is-vertical">
               <article class="tile is-child box has-background-danger">
                 <p class="title has-text-warning has-text-centered">Passed</p>
                 <p class="subtitle has-text-warning has-text-centered">Restaurant Example</p>
               </article>
             </div>
 
-            <div class="tile is-parent has-text-centered">
+            <div class="tile is-parent has-text-centered is-8 is-vertical">
               <article class="tile is-child box has-background-danger" class="yass-pass">
                 <img src="Place Holder" alt="placeholder">
-                <div class="buttons" class="yass-pass">
-                  <button class="button is-danger has-text-warning is-inverted is-outlined">Yass!</button>
-                  <button class="button is-danger has-text-warning is-inverted is-outlined">Pass!</button>
+                <div class="buttons are-large" class="yass-pass">
+                  <button class="button is-danger has-text-warning is-inverted is-outlined is-responsive">Yass!</button>
+                  <button class="button is-danger has-text-warning is-inverted is-outlined is-responsive">Pass!</button>
                 </div>
-                <button class="subtitle button is-danger has-text-warning is-inverted is-outlined">Link to Website</p>
+                <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive">Link to Website</p>
               </article>
             </div>
-            <div class="tile is-parent">
+            <div class="tile is-parent is-vertical">
               <article class="tile is-child box has-background-danger">
                 <p class="title has-text-warning has-text-centered">Weather</p>
-                <p class="subtitle has-text-warning has-text-centered">Insert Text Here</p>
+                <p class="subtitle has-text-warning has-text-centered">(YYYY-MM-DD)</p>
                 <div class="content has-text-warning has-text-centered">
-                  <p>Insert Text Here</p>
+                  <p>Temp:</p>
                 </div>
+                <div class="content has-text-warning has-text-centered">
+                    <p>Wind:</p>
+                  </div>
+                  <div class="content has-text-warning has-text-centered">
+                    <p>Humidity:</p>
+                  </div>
+                  <div class="content has-text-warning has-text-centered">
+                    <p>Feels Like:</p>
+                  </div>
               </article>
             </div>
           </div>
 
           <div class="columns is-centered">
             <div class="buttons">
-                <button class="button is-danger has-text-warning">Search Parameters</button>
+                <button class="button is-danger has-text-warning is-responsive">Search Parameters</button>
+            </div>
+        </div>
+    
+        <div class="landing-page-container" class="modal">
+            <div class="landing-page" id="landing-page-body">
+                <p>Click the button below for restaurant options!</p>
+                <button class="is-primary" class="landing-page" id="landing-page-modal-button">Click Me!</button>
             </div>
         </div>
 
-<!-- <div class="landing-page-container" class="modal">
-      <div class="landing-page" id="landing-page-body">
-        <p>Click the button below for restaurant options!</p>
-        <button class="is-primary" class="landing-page" id="landing-page-modal-button">Click Me!</button>
-      
-      </div>
-    </div>
-
       <div class="modal is-active"> 
-        <div class="modal-background"></div>
+        <div class="modal-background">
+        </div>
           <div class="modal-card">
+            <header class="modal-card-head has-background-warning">
+                <p class="modal-card-title has-text-danger">Search Parameters</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
 
-        <header class="modal-card-head has-background-warning">
-          <p class="modal-card-title has-text-danger">Search Parameters</p>
-          <button class="delete" aria-label="close"></button>
-        </header>
+            <section class="modal-card-body has-background-warning">
+                <label class="checkbox"><input type="checkbox">Delivery</label>
+                <label class="checkbox"><input type="checkbox">Drive-through</label>
+                <label class="checkbox"><input type="checkbox">Takeout</label>
+                <label class="checkbox"><input type="checkbox">Dine-in</label>
+            </section>
 
-        <section class="modal-card-body has-background-warning">
-          <label class="checkbox"><input type="checkbox">Delivery</label>
-          <label class="checkbox"><input type="checkbox">Drive-through</label>
-          <label class="checkbox"><input type="checkbox">Takeout</label>
-          <label class="checkbox"><input type="checkbox">Dine-in</label>
-        </section>
-
-        <footer class="modal-card-foot has-background-warning">
-          <div class="buttons"></div>
-          <div class="buttons">
-            <button class="button is-danger is-responsive is-medium has-text-black">Use Current Location</button>
-          </div>
-        </footer>
-          </div>
-      </div>  
--->
-</body>
+            <footer class="modal-card-foot has-background-warning">
+                <div class="buttons"></div>
+                    <div class="buttons">
+                        <button class="button is-danger is-responsive is-medium has-text-black">Use Current Location</button>
+                    </div>
+                </div>
+            </footer>
+        </div>  
+    </body>
 </html>
