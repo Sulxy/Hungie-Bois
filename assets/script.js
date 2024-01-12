@@ -1,9 +1,9 @@
-var googleAPI_KEY = "";
+var googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM";
 var openWeatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 
 // Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
 var weatherTileInfo = document.querySelector(".weather-card");
-var createWeatherCard = (index) => {
+var createWeatherCard = (index, weatherItem) => {
     var tempFahrenheit = Math.floor((weatherItem.main.temp - 273.15) * 9/5 + 32); // Convert temperature from Kelvin to Fahrenheit and remove decimal digits
     var windSpeed = Math.floor(weatherItem.wind.speed); // Drop the integers after the decimal in the wind speed
     if(index === 0) { // Big weather card
@@ -21,11 +21,16 @@ var createWeatherCard = (index) => {
                     <p>Humidity: ${weatherItem.main.humidity}%</p>
                     <div class="content has-text-warning has-text-centered">
                     <p>Feels Like: ${Math.floor((weatherItem.main.feels_like - 273.15) * 9/5 + 32)}°F</p>
-                </article>`;}
+                </article>`;
+    }
 }
 
 // Function to get the weather data from OpenWeather API
-// Function to get the user's location data from google places API
+
+// Function to get users current location data
+// Get user's current location using Google Places API
+
+
 
 // Closes the modal when you click a button, click outside of it, or hit escape.
 document.addEventListener('DOMContentLoaded', () => {
