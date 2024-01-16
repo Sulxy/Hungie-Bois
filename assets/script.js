@@ -1,5 +1,5 @@
-// let googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM";
-// let openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
+var googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM";
+var openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 var modal = document.querySelector('.modal');
 var weatherTileInfo = document.querySelector(".weather-card");
 // -----------------------------------------------------------------
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeModal($el) {
     $el.classList.remove('is-active');
-  }
+   }
 
   function closeAllModals() {
     (document.querySelectorAll('.modal') || []).forEach(($modal) => {
@@ -143,10 +143,10 @@ var createWeatherCard = (index, weatherItem) => {
 
 
 
-
-// TODO: Make the checkboxes in the modal store information in local storage to be accessed by the Google API. 
+ 
 // TODO: Get users current location using OpenWeather and display weather for that location in the Weather Tile. 
-// TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius.
+// TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius using the local storage 
+// information as a template for search criteria
 // TODO: Display those restaurants in the Restaurants Tile.
 // TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
 // TODO: When a restaurant is Yassed, load the chosenrestaurants.html page and display the restaurant name, address, and website. 
@@ -156,34 +156,33 @@ var createWeatherCard = (index, weatherItem) => {
 
 
 
-// THIS NEEDS TO BE OPENWEATHER API
-// Get user's current location using Google Places API
- function getUserLocation() {
-  // Retrieve the latitude and longitude from the OpenWeather API
-  var latitude = ''/* Retrieve latitude from OpenWeather API response */;
-  var longitude = '' /* Retrieve longitude from OpenWeather API response */;
+// Get user's current location using OpenWeather API
+function getUserLocation() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${openweatherAPI_KEY}`;
 
-  // Make a request to the Google Places API
-  var googlePlacesAPIKey = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM"; /* Your Google Places API key */;
-  var radius = 15; 
-  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=restaurant&key=${googlePlacesAPIKey}`;
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const weatherIcon = data.weather[0].icon;
+        const temperature = Math.floor((data.main.temp - 273.15) * 9/5 + 32);
+        const windSpeed = Math.floor(data.wind.speed);
+        const humidity = data.main.humidity;
+        const feelsLike = Math.floor((data.main.feels_like - 273.15) * 9/5 + 32);
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      // Parse the response and extract the relevant information about the restaurants
-      var restaurants = data.results.map(result => ({
-        name: result.name,
-        address: result.vicinity,
-        website: result.website,
-        }));
-
-//      // Display the information about the restaurants to the user
-      console.log(restaurants);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+        // Use the obtained data as needed
+        console.log("Weather Icon:", weatherIcon);
+        console.log("Temperature:", temperature);
+        console.log("Wind Speed:", windSpeed);
+        console.log("Humidity:", humidity);
+        console.log("Feels Like:", feelsLike);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  });
 }
 
 
@@ -193,40 +192,6 @@ var createWeatherCard = (index, weatherItem) => {
 
 
 
-// let deliveryEl = document.querySelector("#delivery");
-// let driveThruEl = document.querySelector("#driveThru");
-// let takeoutEl = document.querySelector("#takeout");
-// let dineInEl = document.querySelector("#dineIn");
-// var locationButton = document.querySelector(".locationBtn");
-// var getUserCoordinates = () => {
-  // console.log(deliveryEl);
-//   if (dineInEl.checked) {
-//     console.log(dineInEl);
-//   }
-// navigator.geolocation.getCurrentPosition(
-//     (position) => {
-//       var { latitude, longitude } = position.coords;
-//       console.log(position.coords);
-//       var REVERSE_GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=24436c094ae63125e618e94d2ac2df4c`;
 
-      // Retrieves city name from coordinates using reverse geocoding API.
-      //   fetch(REVERSE_GEOCODING_API_URL)
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       var { name } = data[0];
-      //       getWeatherDetails(name, latitude, longitude);
-      //     })
-      //     .catch(() => {
-      //       alert("Error fetching location!");
-      //     });
-//     },
-//     (error) => {
-      // Alert user if location access is denied
-//       if (error.code === error.PERMISSION_DENIED)
-//         alert(
-//           "Please allow location access"
-//         );
-//     },
-//  )};
 
 
