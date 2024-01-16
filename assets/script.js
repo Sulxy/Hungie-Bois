@@ -2,20 +2,23 @@
 // let openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 // -----------------------------------------------------------------
 
-
-
 // Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
 var weatherTileInfo = document.querySelector(".weather-card");
 var createWeatherCard = (index, weatherItem) => {
-    var tempFahrenheit = Math.floor((weatherItem.main.temp - 273.15) * 9/5 + 32); // Convert temperature from Kelvin to Fahrenheit and remove decimal digits
-    var windSpeed = Math.floor(weatherItem.wind.speed); // Drop the integers after the decimal in the wind speed
-    if(index === 0) { // Big weather card
-         // Small weather cards
-        return `<article class="tile is-child box has-background-danger weather-card">
+  var tempFahrenheit = Math.floor(
+    ((weatherItem.main.temp - 273.15) * 9) / 5 + 32
+  ); // Convert temperature from Kelvin to Fahrenheit and remove decimal digits
+  var windSpeed = Math.floor(weatherItem.wind.speed); // Drop the integers after the decimal in the wind speed
+  if (index === 0) {
+    // Big weather card
+    // Small weather cards
+    return `<article class="tile is-child box has-background-danger weather-card">
                     <p class="title has-text-warning has-text-centered">Weather</p>
                     <p class="subtitle has-text-warning has-text-centered">(YYYY-MM-DD)</p>
                     <p>(${weatherItem.dt_txt.split(" ")[0]})</p>
-                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="weather icon">
+                    <img src="https://openweathermap.org/img/wn/${
+                      weatherItem.weather[0].icon
+                    }@2x.png" alt="weather icon">
                     <div class="content has-text-warning has-text-centered">
                     <p>Temp: ${tempFahrenheit}°F</p>
                     <div class="content has-text-warning has-text-centered">
@@ -23,135 +26,157 @@ var createWeatherCard = (index, weatherItem) => {
                     <div class="content has-text-warning has-text-centered">
                     <p>Humidity: ${weatherItem.main.humidity}%</p>
                     <div class="content has-text-warning has-text-centered">
-                    <p>Feels Like: ${Math.floor((weatherItem.main.feels_like - 273.15) * 9/5 + 32)}°F</p>
+                    <p>Feels Like: ${Math.floor(
+                      ((weatherItem.main.feels_like - 273.15) * 9) / 5 + 32
+                    )}°F</p>
                 </article>`;
-    }
-}
-
-
-
-
+  }
+};
 
 // Function to get the weather data from OpenWeather API
 
-
-
-
-
 // Get user's current location using Google Places API
-function getUserLocation() {
-  // Retrieve the latitude and longitude from the OpenWeather API
-  const latitude = /* Retrieve latitude from OpenWeather API response */;
-  const longitude = /* Retrieve longitude from OpenWeather API response */;
+// function getUserLocation() {
+// Retrieve the latitude and longitude from the OpenWeather API
+// const latitude = /* Retrieve latitude from OpenWeather API response */
+// const longitude = /* Retrieve longitude from OpenWeather API response */
 
-  // Make a request to the Google Places API
-  const googlePlacesAPIKey = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM"; /* Your Google Places API key */;
-  const radius = 15; 
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=restaurant&key=${googlePlacesAPIKey}`;
+// Make a request to the Google Places API
+//   const googlePlacesAPIKey =
+//     "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM"; /* Your Google Places API key */
+//   const radius = 15;
+//   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=restaurant&key=${googlePlacesAPIKey}`;
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      // Parse the response and extract the relevant information about the restaurants
-      const restaurants = data.results.map(result => ({
-        name: result.name,
-        address: result.vicinity,
-        website: result.website,
-        }));
+//   fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // Parse the response and extract the relevant information about the restaurants
+//       const restaurants = data.results.map((result) => ({
+//         name: result.name,
+//         address: result.vicinity,
+//         website: result.website,
+//       }));
 
-      // Display the information about the restaurants to the user
-      console.log(restaurants);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
+//       // Display the information about the restaurants to the user
+//       console.log(restaurants);
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// }
 
 // Call the function to get the user's current location and find restaurants
-getUserLocation();
-
-
-
-
+// getUserLocation();
 
 // Closes the modal when you click a button, click outside of it, or hit escape.
-document.addEventListener('DOMContentLoaded', () => {
-    // Functions to open and close a modal
-    function openModal($el) {
-      $el.classList.add('is-active');
-    }
-<<<<<<< HEAD
-  
-    function closeModal($el) {
-      $el.classList.remove('is-active');
-=======
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add("is-active");
+  }
 });
 let deliveryEl = document.querySelector("#delivery");
 let driveThruEl = document.querySelector("#driveThru");
 let takeoutEl = document.querySelector("#takeout");
 let dineInEl = document.querySelector("#dineIn");
 var locationButton = document.querySelector(".locationBtn");
-var getUserCoordinates = () => {
+function getCheckboxInput() {
+  let checkedBoxes = {
+    dineIn: false,
+    takeout: false,
+    driveThru: false,
+    delivery: false,
+  };
   // console.log(deliveryEl);
   if (dineInEl.checked) {
-    console.log(dineInEl);
+    // add dineInEl to checkedBoxes object.
+    checkedBoxes.dineIn = true;
   }
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      var { latitude, longitude } = position.coords;
-      console.log(position.coords);
-      var REVERSE_GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=24436c094ae63125e618e94d2ac2df4c`;
+  if (takeoutEl.checked) {
+    // add takeoutEl to checkedBoxes object.
+    checkedBoxes.takeout = true;
+  }
+  if (driveThruEl.checked) {
+    //add driveThruEl to checkedBoxes object
+    checkedBoxes.driveThru = true;
+  }
+  if (deliveryEl.checked) {
+    //add deliveryEl to checkedBoxes object
+    checkedBoxes.delivery = true;
+  }
+  if (
+    !dineInEl.checked &&
+    !takeoutEl.checked &&
+    !driveThruEl.checked &&
+    !deliveryEl.checked
+  ) {
+    alert("just what kind of restaurant are you looking for, freakazoid???");
+  }
+  localStorage.setItem("checkedBoxes", JSON.stringify(checkedBoxes));
+  getUserCoordinates();
+}
+var getUserCoordinates = () => {
+  navigator.geolocation
+    .getCurrentPosition(
+      (position) => {
+        var { latitude, longitude } = position.coords;
+        console.log(position.coords);
+        var REVERSE_GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=24436c094ae63125e618e94d2ac2df4c`;
 
-      // Retrieves city name from coordinates using reverse geocoding API.
-      //   fetch(REVERSE_GEOCODING_API_URL)
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       var { name } = data[0];
-      //       getWeatherDetails(name, latitude, longitude);
-      //     })
-      //     .catch(() => {
-      //       alert("Error fetching location!");
-      //     });
-    },
-    (error) => {
-      // Alert user if location access is denied
-      if (error.code === error.PERMISSION_DENIED)
-        alert(
-          "Please allow location access if you want more accurate weather information! Please refresh the page using 'F5' and try again"
-        );
->>>>>>> a275994be51ac8ceee966935bcd9174c3613c29b
-    }
-  
-    function closeAllModals() {
-      (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-        closeModal($modal);
-      });
-    }
-  
-    // Add a click event on buttons to open a specific modal
-    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+        // Retrieves city name from coordinates using reverse geocoding API.
+        //   fetch(REVERSE_GEOCODING_API_URL)
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //       var { name } = data[0];
+        //       getWeatherDetails(name, latitude, longitude);
+        //     })
+        //     .catch(() => {
+        //       alert("Error fetching location!");
+        //     });
+      },
+      (error) => {
+        // Alert user if location access is denied
+        if (error.code === error.PERMISSION_DENIED)
+          alert(
+            "Please allow location access if you want more accurate weather information! Please refresh the page using 'F5' and try again"
+          );
+      },
+      function closeAllModals() {
+        (document.querySelectorAll(".modal") || []).forEach(($modal) => {
+          closeModal($modal);
+        });
+      }
+    )(
+      // Add a click event on buttons to open a specific modal
+      document.querySelectorAll(".js-modal-trigger") || []
+    )
+    .forEach(($trigger) => {
       const modal = $trigger.dataset.target;
       const $target = document.getElementById(modal);
-  
-      $trigger.addEventListener('click', () => {
+
+      $trigger.addEventListener("click", () => {
         openModal($target);
       });
-    });
-  
-    // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-      const $target = $close.closest('.modal');
-  
-      $close.addEventListener('click', () => {
+    })(
+      // Add a click event on various child elements to close the parent modal
+      document.querySelectorAll(
+        ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+      ) || []
+    )
+    .forEach(($close) => {
+      const $target = $close.closest(".modal");
+
+      $close.addEventListener("click", () => {
         closeModal($target);
       });
     });
-  
-    // Add a keyboard event to close all modals
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'Escape') {
-        closeAllModals();
-      }
-    });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      closeAllModals();
+    }
   });
+};
+let userLocationBtn = document.querySelector(".user-location");
+userLocationBtn.addEventListener("click", getCheckboxInput);
