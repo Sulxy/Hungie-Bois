@@ -70,11 +70,34 @@
 </div>
     <div class="columns is-centered">
       <div class="buttons is-centered">
-        <button class="button is-danger has-text-warning is-responsive">
+        <button class="button is-danger has-text-warning is-responsive" id="paramBtn">
           Search Parameters
         </button>
       </div>
     </div>
+    <div class="modal"> 
+      <div class="modal-background">
+      </div>
+        <div class="modal-card">
+          <header class="modal-card-head has-background-warning">
+              <p class="modal-card-title has-text-danger">Search Parameters</p>
+              <button class="delete" aria-label="close"></button>
+          </header>
+
+          <section class="modal-card-body has-background-warning">
+              <label class="checkbox" ><input id="delivery" type="checkbox">Delivery</label>
+              <label class="checkbox" ><input id="driveThru" type="checkbox">Drive-through</label>
+              <label class="checkbox" ><input id="takeout" type="checkbox">Takeout</label>
+              <label class="checkbox" ><input id="dineIn" type="checkbox">Dine-in</label>
+          </section>
+
+          <footer class="modal-card-foot has-background-warning">
+              <div class="buttons"></div>
+                  <div class="buttons user-location">
+                      <button class="button is-danger is-responsive is-medium has-text-black">Use Current Location</button>
+                  </div>
+              </div>
+          </footer>
     <script src="assets/script.js"></script>
   </body>
 </html>
