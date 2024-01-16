@@ -2,6 +2,7 @@
 // let openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 // -----------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
+  
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
@@ -47,20 +48,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add a keyboard event to close all modals
   document.addEventListener('keydown', (event) => {
     if (event.code === 'Escape') {
-      closeModal();
+      closeAllModals();
     }
   });
 
-  // Add a click event to close the modal when the .user-location button is clicked
+
+
+  // Add a click event to run the getUserLocation function close the modal when the .user-location button is clicked
   const locationButton = document.querySelector('.user-location');
   if (locationButton) {
     locationButton.addEventListener('click', () => {
-      closeModal();
+      getUserLocation(), closeModal();
     });
   }
+
+  // Add a click event on the .parametersBtn button to reopen the modal
+  const parametersBtn = document.querySelector('#paramBtn');
+  const modal = document.querySelector('.modal');
+  parametersBtn.addEventListener('click', () => {
+    modal.classList.add('is-active');
+  });
 });
 
-
+let modal = document.querySelector('.modal');
 
 // Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
 var weatherTileInfo = document.querySelector(".weather-card");
@@ -97,7 +107,7 @@ var createWeatherCard = (index, weatherItem) => {
 
 
 // Get user's current location using Google Places API
-//function getUserLocation() {
+// function getUserLocation() {
   // Retrieve the latitude and longitude from the OpenWeather API
 //  const latitude = /* Retrieve latitude from OpenWeather API response */;
 //  const longitude = /* Retrieve longitude from OpenWeather API response */;
@@ -117,16 +127,13 @@ var createWeatherCard = (index, weatherItem) => {
 //        website: result.website,
 //        }));
 
-      // Display the information about the restaurants to the user
+//      // Display the information about the restaurants to the user
 //      console.log(restaurants);
 //    })
 //    .catch(error => {
 //      console.error('Error:', error);
 //    });
 //}
-
-// Call the function to get the user's current location and find restaurants
-//getUserLocation();
 
 
 
