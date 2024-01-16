@@ -1,5 +1,5 @@
-const googleAPI_KEY = process.env.googleAPI_KEY;
-const openweatherAPI_KEY = process.env.openweatherAPI_KEY;
+// const googleAPI_KEY = googleAPI_KEY;
+// const openweatherAPI_KEY = openweatherAPI_KEY;
 
 // Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
 var weatherTileInfo = document.querySelector(".weather-card");
@@ -84,3 +84,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+var locationButton = document.querySelector(".locationBtn");
+var getUserCoordinates = () => {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      var { latitude, longitude } = position.coords;
+      console.log(position.coords);
+      var REVERSE_GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=24436c094ae63125e618e94d2ac2df4c`;
+
+      // Retrieves city name from coordinates using reverse geocoding API.
+      //   fetch(REVERSE_GEOCODING_API_URL)
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //       var { name } = data[0];
+      //       getWeatherDetails(name, latitude, longitude);
+      //     })
+      //     .catch(() => {
+      //       alert("Error fetching location!");
+      //     });
+    },
+    (error) => {
+      // Alert user if location access is denied
+      if (error.code === error.PERMISSION_DENIED)
+        alert(
+          "Please allow location access if you want more accurate weather information! Please refresh the page using 'F5' and try again"
+        );
+    }
+  );
+};
+locationButton.addEventListener("click", getUserCoordinates);
