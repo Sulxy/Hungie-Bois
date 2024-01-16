@@ -1,6 +1,64 @@
 // let googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM";
 // let openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 // -----------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a click event to close the modal when clicked outside its boundaries
+  document.addEventListener('click', (event) => {
+    const $modal = event.target.closest('.modal');
+    if (!$modal) {
+      closeModal();
+    }
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Add a click event to close the modal when the .user-location button is clicked
+  const locationButton = document.querySelector('.user-location');
+  if (locationButton) {
+    locationButton.addEventListener('click', () => {
+      closeModal();
+    });
+  }
+});
 
 
 
@@ -39,54 +97,44 @@ var createWeatherCard = (index, weatherItem) => {
 
 
 // Get user's current location using Google Places API
-function getUserLocation() {
+//function getUserLocation() {
   // Retrieve the latitude and longitude from the OpenWeather API
-  const latitude = /* Retrieve latitude from OpenWeather API response */;
-  const longitude = /* Retrieve longitude from OpenWeather API response */;
+//  const latitude = /* Retrieve latitude from OpenWeather API response */;
+//  const longitude = /* Retrieve longitude from OpenWeather API response */;
 
   // Make a request to the Google Places API
-  const googlePlacesAPIKey = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM"; /* Your Google Places API key */;
-  const radius = 15; 
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=restaurant&key=${googlePlacesAPIKey}`;
+//  const googlePlacesAPIKey = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM"; /* Your Google Places API key */;
+//  const radius = 15; 
+//  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=restaurant&key=${googlePlacesAPIKey}`;
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
+//  fetch(url)
+//    .then(response => response.json())
+//    .then(data => {
       // Parse the response and extract the relevant information about the restaurants
-      const restaurants = data.results.map(result => ({
-        name: result.name,
-        address: result.vicinity,
-        website: result.website,
-        }));
+//      const restaurants = data.results.map(result => ({
+//        name: result.name,
+//        address: result.vicinity,
+//        website: result.website,
+//        }));
 
       // Display the information about the restaurants to the user
-      console.log(restaurants);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
+//      console.log(restaurants);
+//    })
+//    .catch(error => {
+//      console.error('Error:', error);
+//    });
+//}
 
 // Call the function to get the user's current location and find restaurants
-getUserLocation();
+//getUserLocation();
 
 
 
 
 
-// Closes the modal when you click a button, click outside of it, or hit escape.
-document.addEventListener('DOMContentLoaded', () => {
-    // Functions to open and close a modal
-    function openModal($el) {
-      $el.classList.add('is-active');
-    }
-<<<<<<< HEAD
-  
-    function closeModal($el) {
-      $el.classList.remove('is-active');
-=======
-  });
-});
+
+
+
 let deliveryEl = document.querySelector("#delivery");
 let driveThruEl = document.querySelector("#driveThru");
 let takeoutEl = document.querySelector("#takeout");
@@ -120,38 +168,7 @@ var getUserCoordinates = () => {
         alert(
           "Please allow location access if you want more accurate weather information! Please refresh the page using 'F5' and try again"
         );
->>>>>>> a275994be51ac8ceee966935bcd9174c3613c29b
-    }
-  
-    function closeAllModals() {
-      (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-        closeModal($modal);
-      });
-    }
-  
-    // Add a click event on buttons to open a specific modal
-    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-      const modal = $trigger.dataset.target;
-      const $target = document.getElementById(modal);
-  
-      $trigger.addEventListener('click', () => {
-        openModal($target);
-      });
-    });
-  
-    // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-      const $target = $close.closest('.modal');
-  
-      $close.addEventListener('click', () => {
-        closeModal($target);
-      });
-    });
-  
-    // Add a keyboard event to close all modals
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'Escape') {
-        closeAllModals();
-      }
-    });
-  });
+    },
+)};
+
+
