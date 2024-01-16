@@ -80,9 +80,47 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal($el) {
       $el.classList.add('is-active');
     }
+<<<<<<< HEAD
   
     function closeModal($el) {
       $el.classList.remove('is-active');
+=======
+  });
+});
+let deliveryEl = document.querySelector("#delivery");
+let driveThruEl = document.querySelector("#driveThru");
+let takeoutEl = document.querySelector("#takeout");
+let dineInEl = document.querySelector("#dineIn");
+var locationButton = document.querySelector(".locationBtn");
+var getUserCoordinates = () => {
+  // console.log(deliveryEl);
+  if (dineInEl.checked) {
+    console.log(dineInEl);
+  }
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      var { latitude, longitude } = position.coords;
+      console.log(position.coords);
+      var REVERSE_GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=24436c094ae63125e618e94d2ac2df4c`;
+
+      // Retrieves city name from coordinates using reverse geocoding API.
+      //   fetch(REVERSE_GEOCODING_API_URL)
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //       var { name } = data[0];
+      //       getWeatherDetails(name, latitude, longitude);
+      //     })
+      //     .catch(() => {
+      //       alert("Error fetching location!");
+      //     });
+    },
+    (error) => {
+      // Alert user if location access is denied
+      if (error.code === error.PERMISSION_DENIED)
+        alert(
+          "Please allow location access if you want more accurate weather information! Please refresh the page using 'F5' and try again"
+        );
+>>>>>>> a275994be51ac8ceee966935bcd9174c3613c29b
     }
   
     function closeAllModals() {
