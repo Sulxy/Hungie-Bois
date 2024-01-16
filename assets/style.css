@@ -44,7 +44,9 @@ html {
 }
 
 /*
-.yass-pass {
- Unsure how to center these buttons 
-} 
+#weatherIcon {
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
 */

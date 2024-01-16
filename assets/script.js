@@ -117,46 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
-var weatherTileInfo = document.querySelector(".weather-card");
-var createWeatherCard = (index, weatherItem) => {
-    var tempFahrenheit = Math.floor((weatherItem.main.temp - 273.15) * 9/5 + 32); // Convert temperature from Kelvin to Fahrenheit and remove decimal digits
-    var windSpeed = Math.floor(weatherItem.wind.speed); // Drop the integers after the decimal in the wind speed
-    if(index === 0) {
-         // Small weather cards
-        return `<article class="tile is-child box has-background-danger weather-card">
-                    <p class="title has-text-warning has-text-centered">Weather</p>
-                    <p class="subtitle has-text-warning has-text-centered">(YYYY-MM-DD)</p>
-                    <p>(${weatherItem.dt_txt.split(" ")[0]})</p>
-                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="weather icon">
-                    <div class="content has-text-warning has-text-centered">
-                    <p>Temp: ${tempFahrenheit}°F</p>
-                    <div class="content has-text-warning has-text-centered">
-                    <p>Wind: ${windSpeed} MPH</p>
-                    <div class="content has-text-warning has-text-centered">
-                    <p>Humidity: ${weatherItem.main.humidity}%</p>
-                    <div class="content has-text-warning has-text-centered">
-                    <p>Feels Like: ${Math.floor((weatherItem.main.feels_like - 273.15) * 9/5 + 32)}°F</p>
-                </article>`;
-    }
-}
-
-
-
- 
-// TODO: Get users current location using OpenWeather and display weather for that location in the Weather Tile. 
-// TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius using the local storage 
-// information as a template for search criteria
-// TODO: Display those restaurants in the Restaurants Tile.
-// TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
-// TODO: When a restaurant is Yassed, load the chosenrestaurants.html page and display the restaurant name, address, and website. 
-
-
-
-
-
-
-// Get user's current location using OpenWeather API
+// Copied from Josh's Weather Dashboard and modified to meet the requirements of this assignment
 function getUserLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
     const latitude = position.coords.latitude;
@@ -167,17 +128,27 @@ function getUserLocation() {
       .then((response) => response.json())
       .then((data) => {
         const weatherIcon = data.weather[0].icon;
+        const weatherDescription = data.weather[0].description.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
         const temperature = Math.floor((data.main.temp - 273.15) * 9/5 + 32);
         const windSpeed = Math.floor(data.wind.speed);
         const humidity = data.main.humidity;
         const feelsLike = Math.floor((data.main.feels_like - 273.15) * 9/5 + 32);
 
-        // Use the obtained data as needed
-        console.log("Weather Icon:", weatherIcon);
-        console.log("Temperature:", temperature);
-        console.log("Wind Speed:", windSpeed);
-        console.log("Humidity:", humidity);
-        console.log("Feels Like:", feelsLike);
+        // Display weather information in the weather tile
+        const weatherTile = document.querySelector('.weather');
+        weatherTile.innerHTML = `
+          <div class="tile is-parent is-vertical has-text-centered weather">
+          <article class="tile is-child box has-background-danger weather-card">
+          <p class="title has-text-warning has-text-centered">Weather</p>
+          <figure class="image is-128x128 is-inline-block"><img src="https://openweathermap.org/img/wn/${weatherIcon}.png" alt="weather icon" id="weatherIcon"></figure>
+          <p class="content has-text-warning has-text-centered">${weatherDescription}</p>
+          <p class="content has-text-warning has-text-centered">Date: ${currentDate}</p>
+          <p class="content has-text-warning has-text-centered">Temp: ${temperature}°F</p>
+          <p class="content has-text-warning has-text-centered">Wind: ${windSpeed} MPH</p>
+          <p class="content has-text-warning has-text-centered">Humidity: ${humidity}%</p>
+          <p class="content has-text-warning has-text-centered">Feels Like: ${feelsLike}°F</p>
+        `;
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -187,7 +158,12 @@ function getUserLocation() {
 
 
 
-
+// TODO: Display weather for that location in the Weather Tile. 
+// TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius using the local storage 
+// information as a template for search criteria
+// TODO: Display those restaurants in the Restaurants Tile.
+// TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
+// TODO: When a restaurant is Yassed, load the chosenrestaurants.html page and display the restaurant name, address, and website. 
 
 
 
