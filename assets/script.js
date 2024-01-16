@@ -1,6 +1,5 @@
-// ${process.env.googleAPI_KEY} to get the google API KEY
-// ${process.env.openweatherAPI_KEY} to get the Openweather API KEY
-// -----------------------------------------------------------------
+const googleAPI_KEY = process.env.googleAPI_KEY;
+const openweatherAPI_KEY = process.env.openweatherAPI_KEY;
 
 // Copied from Josh's Weather Dashboard and modified to attempt to meet the requirements of this assignment
 var weatherTileInfo = document.querySelector(".weather-card");
@@ -85,57 +84,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-// PSEUDOCODE
-
-// console.log(location.href);
-//     PSEUDOCODE
-// GET PLACES DATA FROM API
-//  GENERATE RANDOM RESTAURANT
-// Get a handle on the local restaurants data passed back from the maps API
-// Store the first 20ish restaurants in an array.
-// for (rest = 0, rest <=20, rest++) {
-// restaurant
-// }
-// restArray = [r1, r2, r3, r4, r5, etc]
-// let randomRestIndex = Math.floor(Math.random() * restArray.length)
-// let randomRest = restArray[randomRestIndex]
-
-// STORE CHECKBOX INFO FUNCTION:
-let delivery = false;
-let driveThru = false;
-let takeout = false;
-let dineIn = false;
-let deliveryEl = document.getElementById("delivery");
-let driveThruEl = document.getElementById("driveThru");
-let takeoutEl = document.getElementById("takeout");
-let dineInEl = document.getElementById("dineIn");
-
-var locationButton = document.querySelector(".locationBtn");
-var API_KEY = "24436c094ae63125e618e94d2ac2df4c";
-var getUserCoordinates = () => {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      var { latitude, longitude } = position.coords;
-      var REVERSE_GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
-
-      // Retrieves city name from coordinates using reverse geocoding API.
-      fetch(REVERSE_GEOCODING_API_URL)
-        .then((res) => res.json())
-        .then((data) => {
-          var { name } = data[0];
-          getWeatherDetails(name, latitude, longitude);
-        })
-        .catch(() => {
-          alert("Error fetching location!");
-        });
-    },
-    (error) => {
-      // Alert user if location access is denied
-      if (error.code === error.PERMISSION_DENIED)
-        alert(
-          "Please allow location access if you want more accurate weather information! Please refresh the page using 'F5' and try again"
-        );
-    }
-  );
-};
-locationButton.addEventListener("click", getUserCoordinates);
