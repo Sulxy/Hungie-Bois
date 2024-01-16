@@ -84,9 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
+let deliveryEl = document.querySelector("#delivery");
+let driveThruEl = document.querySelector("#driveThru");
+let takeoutEl = document.querySelector("#takeout");
+let dineInEl = document.querySelector("#dineIn");
 var locationButton = document.querySelector(".locationBtn");
 var getUserCoordinates = () => {
+  // console.log(deliveryEl);
+  if (dineInEl.checked) {
+    console.log(dineInEl);
+  }
   navigator.geolocation.getCurrentPosition(
     (position) => {
       var { latitude, longitude } = position.coords;
