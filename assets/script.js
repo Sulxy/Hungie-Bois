@@ -139,15 +139,16 @@ function getUserLocation() {
   });
 }
 
+function randomRestaurant() {}
 var map;
 var service;
 var infowindow;
 
+restaurantList = {};
 // Map function to find nearby restaurants
 function initMap() {
   var userLocation = new google.maps.LatLng(latitude, longitude);
   infowindow = new google.maps.InfoWindow();
-  console.log(localStorage.getItem("checkedType"));
   map = new google.maps.Map(document.getElementById("map"), {
     center: userLocation,
     zoom: 14,
@@ -165,7 +166,9 @@ function initMap() {
   service.nearbySearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
+        restaurantList = { [i]: results[i] };
+        localStorage.setItem([i], JSON.stringify(results[i]));
+        console.log(restaurantList);
         createMarker(results[i]);
       }
       map.setCenter(results[0].geometry.location);
@@ -186,9 +189,7 @@ function createMarker(place) {
   //   infowindow.open(map);
   // });
 }
-// TODO: Display weather for that location in the Weather Tile.
-// TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius using the local storage
-// information as a template for search criteria
+
 // TODO: Display those restaurants in the Restaurants Tile.
 // TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
 // TODO: When a restaurant is Yassed, load the chosenrestaurants.html page and display the restaurant name, address, and website.
