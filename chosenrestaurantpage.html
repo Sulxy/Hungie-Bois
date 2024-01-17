@@ -76,10 +76,16 @@
           </header>
 
           <section class="modal-card-body has-background-warning">
-              <label class="checkbox" ><input id="delivery" type="checkbox">Delivery</label>
-              <label class="checkbox" ><input id="driveThru" type="checkbox">Drive-through</label>
-              <label class="checkbox" ><input id="takeout" type="checkbox">Takeout</label>
-              <label class="checkbox" ><input id="dineIn" type="checkbox">Dine-in</label>
+            <input type="radio" name="restaurant_type" value="delivery">
+            <label for="delivery">Delivery</label>
+            <input type="radio" name="restaurant_type" value="takeout">
+            <label for="takeout">Takeout</label>
+            <input type="radio" name="restaurant_type" value="drive-thru">
+            <label for="drive-thru">Drive Thru</label>
+            <input type="radio" name="restaurant_type" value="dine-in">
+            <label for="dine-in">Sit-Down</label>
+            <input type="radio" name="restaurant_type" value="restaurant">
+            <label for="restaurant">Gimme Whatever</label>
           </section>
 
           <footer class="modal-card-foot has-background-warning">
