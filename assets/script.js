@@ -3,10 +3,51 @@ var openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 var modal = document.querySelector(".modal");
 var weatherTileInfo = document.querySelector(".weather-card");
 // -----------------------------------------------------------------
+// define variables for checkboxes.
+let deliveryEl = document.querySelector("#delivery");
+let driveThruEl = document.querySelector("#driveThru");
+let takeoutEl = document.querySelector("#takeout");
+let dineInEl = document.querySelector("#dineIn");
+// get user Input on checkboxes.
+function getCheckboxInput() {
+  // create object with default "false" values for each restaurant option.
+  let checkedBoxes = {
+    dineIn: false,
+    takeout: false,
+    driveThru: false,
+    delivery: false,
+  };
+
+  if (dineInEl.checked) {
+    checkedBoxes.dineIn = true;
+  }
+  if (takeoutEl.checked) {
+    checkedBoxes.takeout = true;
+  }
+  if (driveThruEl.checked) {
+    checkedBoxes.driveThru = true;
+  }
+  if (deliveryEl.checked) {
+    checkedBoxes.delivery = true;
+  }
+  // add alert if user doesn't click any of the checkboxes.
+  if (
+    !dineInEl.checked &&
+    !takeoutEl.checked &&
+    !driveThruEl.checked &&
+    !deliveryEl.checked
+  ) {
+    alert(
+      "just what kind of restaurant are you looking for, freakazoid??? Click on 'Search Parameters' and pick at least one of the checkboxes!"
+    );
+  }
+  localStorage.setItem("checkedBoxes", JSON.stringify(checkedBoxes));
+}
 
 // Modal Functionality
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
+
   function openModal($el) {
     $el.classList.add("is-active");
   }
@@ -40,7 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var $target = $close.closest(".modal");
 
     $close.addEventListener("click", () => {
-      closeModal($target);
+      // Add getCheckboxInput function here to grab checkbox input when button is clicked.
+      closeModal($target), getCheckboxInput();
     });
   });
 
@@ -72,48 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
   var modal = document.querySelector(".modal");
   parametersBtn.addEventListener("click", () => {
     modal.classList.add("is-active");
-  });
-
-  // var's for the below eventListeners
-  var deliveryCheckbox = document.querySelector("#delivery");
-  var driveThruCheckbox = document.querySelector("#driveThru");
-  var takeoutCheckbox = document.querySelector("#takeout");
-  var dineInCheckbox = document.querySelector("#dineIn");
-
-  // Stores if the user wants delivery in local storage, and removes if unchecked.
-  deliveryCheckbox.addEventListener("change", () => {
-    if (deliveryCheckbox.checked) {
-      localStorage.setItem("delivery", "Delivery");
-    } else {
-      localStorage.removeItem("delivery");
-    }
-  });
-
-  // Stores if the user wants driveThru in local storage, and removes if unchecked.
-  driveThruCheckbox.addEventListener("change", () => {
-    if (driveThruCheckbox.checked) {
-      localStorage.setItem("driveThru", "Drive-Through");
-    } else {
-      localStorage.removeItem("driveThru");
-    }
-  });
-
-  // Stores if the user wants takeout in local storage, and removes if unchecked.
-  takeoutCheckbox.addEventListener("change", () => {
-    if (takeoutCheckbox.checked) {
-      localStorage.setItem("takeout", "Takeout");
-    } else {
-      localStorage.removeItem("takeout");
-    }
-  });
-
-  // Stores if the user wants dineIn in local storage, and removes if unchecked.
-  dineInCheckbox.addEventListener("change", () => {
-    if (dineInCheckbox.checked) {
-      localStorage.setItem("dineIn", "Dine-in");
-    } else {
-      localStorage.removeItem("dineIn");
-    }
   });
 });
 
