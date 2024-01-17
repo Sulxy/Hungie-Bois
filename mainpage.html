@@ -30,7 +30,8 @@
                   <button class="button is-danger has-text-warning is-inverted is-outlined is-responsive yass">Yass!</button>
                   <button class="button is-danger has-text-warning is-inverted is-outlined is-responsive pass">Pass!</button>
                 </div>
-                <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive websiteLink">Link to Website</p>
+                <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive websiteLink">Link to Website</button>
+                <div id="map"></div>
               </article>
             </div>
             <div class="tile is-parent is-vertical weather">
@@ -63,12 +64,17 @@
             </header>
 
             <section class="modal-card-body has-background-warning">
-                <label class="checkbox" ><input id="delivery" type="checkbox">Delivery</label>
-                <label class="checkbox" ><input id="driveThru" type="checkbox">Drive-through</label>
-                <label class="checkbox" ><input id="takeout" type="checkbox">Takeout</label>
-                <label class="checkbox" ><input id="dineIn" type="checkbox">Dine-in</label>
+              <input type="radio" name="restaurant_type" value="delivery">
+              <label for="delivery">Delivery</label>
+              <input type="radio" name="restaurant_type" value="takeout">
+              <label for="takeout">Takeout</label>
+              <input type="radio" name="restaurant_type" value="drive-thru">
+              <label for="drive-thru">Drive Thru</label>
+              <input type="radio" name="restaurant_type" value="dine-in">
+              <label for="dine-in">Sit-down</label>
+              <input type="radio" name="restaurant_type" value="restaurant">
+              <label for="restaurant">GIMME WHATEVER</label>
             </section>
-
             <footer class="modal-card-foot has-background-warning">
                 <div class="buttons"></div>
                     <div class="buttons">
@@ -78,5 +84,6 @@
             </footer>
         </div> 
         <script src="assets/script.js"></script>
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHid0KEOxueAb0mtUBqu1a0UjKzNFziPA&libraries=places"></script>
     </body>
 </html>

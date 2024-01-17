@@ -3,45 +3,16 @@ var openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
 var modal = document.querySelector(".modal");
 var weatherTileInfo = document.querySelector(".weather-card");
 // -----------------------------------------------------------------
-// define variables for checkboxes.
-let deliveryEl = document.querySelector("#delivery");
-let driveThruEl = document.querySelector("#driveThru");
-let takeoutEl = document.querySelector("#takeout");
-let dineInEl = document.querySelector("#dineIn");
-// get user Input on checkboxes.
-function getCheckboxInput() {
-  // create object with default "false" values for each restaurant option.
-  let checkedBoxes = {
-    dineIn: false,
-    takeout: false,
-    driveThru: false,
-    delivery: false,
-  };
 
-  if (dineInEl.checked) {
-    checkedBoxes.dineIn = true;
+// get user Input on checkboxes.
+var typeEls = document.getElementsByName("restaurant_type");
+localStorage.setItem("checkedType", "restaurant");
+function getRadioInput() {
+  for (i = 0; i < typeEls.length; i++) {
+    if (typeEls[i].checked) {
+      localStorage.setItem("checkedType", typeEls[i].value);
+    }
   }
-  if (takeoutEl.checked) {
-    checkedBoxes.takeout = true;
-  }
-  if (driveThruEl.checked) {
-    checkedBoxes.driveThru = true;
-  }
-  if (deliveryEl.checked) {
-    checkedBoxes.delivery = true;
-  }
-  // add alert if user doesn't click any of the checkboxes.
-  if (
-    !dineInEl.checked &&
-    !takeoutEl.checked &&
-    !driveThruEl.checked &&
-    !deliveryEl.checked
-  ) {
-    alert(
-      "just what kind of restaurant are you looking for, freakazoid??? Click on 'Search Parameters' and pick at least one of the checkboxes!"
-    );
-  }
-  localStorage.setItem("checkedBoxes", JSON.stringify(checkedBoxes));
 }
 
 // Modal Functionality
@@ -80,9 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
   ).forEach(($close) => {
     var $target = $close.closest(".modal");
 
-    $close.addEventListener("click", () => {
+    $close.addEventListener("click", function () {
       // Add getCheckboxInput function here to grab checkbox input when button is clicked.
-      closeModal($target), getCheckboxInput();
+      closeModal($target);
+      getRadioInput();
+      getUserLocation();
     });
   });
 
@@ -116,12 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("is-active");
   });
 });
-
+var latitude;
+var longitude;
 // Copied from Josh's Weather Dashboard and modified to meet the requirements of this assignment
 function getUserLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    // Call map function after latitude and longitude are retrieved
+    initMap();
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${openweatherAPI_KEY}`;
 
     fetch(apiUrl)
@@ -163,6 +139,53 @@ function getUserLocation() {
   });
 }
 
+var map;
+var service;
+var infowindow;
+
+// Map function to find nearby restaurants
+function initMap() {
+  var userLocation = new google.maps.LatLng(latitude, longitude);
+  infowindow = new google.maps.InfoWindow();
+  console.log(localStorage.getItem("checkedType"));
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: userLocation,
+    zoom: 14,
+  });
+
+  var request = {
+    location: userLocation,
+    radius: "10000",
+    keyword: localStorage.getItem("checkedType"),
+    type: ["restaurant"],
+  };
+
+  var service = new google.maps.places.PlacesService(map);
+
+  service.nearbySearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        console.log(results[i]);
+        createMarker(results[i]);
+      }
+      map.setCenter(results[0].geometry.location);
+    }
+  });
+}
+
+function createMarker(place) {
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+
+  // google.maps.event.addListener(marker, "click", () => {
+  //   infowindow.setContent(place.name || "");
+  //   infowindow.open(map);
+  // });
+}
 // TODO: Display weather for that location in the Weather Tile.
 // TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius using the local storage
 // information as a template for search criteria
