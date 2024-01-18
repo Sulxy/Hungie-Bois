@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add a click event on buttons to open a specific modal
   (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
-    var modal = $trigger.dataset.target;
-    var $target = document.getElementById(modal);
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
 
     $trigger.addEventListener("click", () => {
       openModal($target);
@@ -49,13 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
     ) || []
   ).forEach(($close) => {
-    var $target = $close.closest(".modal");
+    const $target = $close.closest(".modal");
 
-    $close.addEventListener("click", function () {
+    $close.addEventListener("click", () => {
       // Add getCheckboxInput function here to grab checkbox input when button is clicked.
       closeModal($target);
-      getRadioInput();
-      getUserLocation();
     });
   });
 
@@ -78,7 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
   var locationButton = document.querySelector(".user-location");
   if (locationButton) {
     locationButton.addEventListener("click", () => {
-      getUserLocation(), closeModal();
+      getUserLocation();
+      closeModal();
+      getRadioInput();
     });
   }
 
@@ -139,6 +139,17 @@ function getUserLocation() {
   });
 }
 
+passedList = [];
+var restaurants;
+
+function generateRandomRestaurant() {
+  var randomIndex = Math.floor(Math.random() * restaurants.length);
+  var randomRestaurant = restaurants[randomIndex];
+  document.getElementById("random-restaurant").textContent =
+    randomRestaurant.name;
+  console.log(randomRestaurant);
+}
+
 var map;
 var service;
 var infowindow;
@@ -147,7 +158,6 @@ var infowindow;
 function initMap() {
   var userLocation = new google.maps.LatLng(latitude, longitude);
   infowindow = new google.maps.InfoWindow();
-  console.log(localStorage.getItem("checkedType"));
   map = new google.maps.Map(document.getElementById("map"), {
     center: userLocation,
     zoom: 14,
@@ -164,8 +174,11 @@ function initMap() {
 
   service.nearbySearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      restaurants = results;
+      // call random Restaurant function AFTER restaurants array is defined.
+      generateRandomRestaurant();
+      console.log(restaurants);
       for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
         createMarker(results[i]);
       }
       map.setCenter(results[0].geometry.location);
@@ -186,9 +199,7 @@ function createMarker(place) {
   //   infowindow.open(map);
   // });
 }
-// TODO: Display weather for that location in the Weather Tile.
-// TODO: Apply that current location to the Google Places API to get restaurants in the area wiuhtin a 15 mile radius using the local storage
-// information as a template for search criteria
+
 // TODO: Display those restaurants in the Restaurants Tile.
 // TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
 // TODO: When a restaurant is Yassed, load the chosenrestaurants.html page and display the restaurant name, address, and website.
