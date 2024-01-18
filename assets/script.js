@@ -216,6 +216,17 @@ function createMarker(place) {
   //   infowindow.open(map);
   // });
 }
+var pass = document.querySelector("#pass");
+
+pass.addEventListener("click",passFunction);
+function passFunction(){
+  var muffin = document.querySelector("#noChoice");
+var cookies =document.createElement("p");
+cookies.textContent=randomRestaurant.name;
+muffin.appendChild(cookies);
+generateRandomRestaurant();
+
+}
 
 // TODO: Display those restaurants in the Restaurants Tile.
 // TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
