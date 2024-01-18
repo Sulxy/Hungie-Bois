@@ -6,7 +6,7 @@ var weatherTileInfo = document.querySelector(".weather-card");
 
 // get user Input on checkboxes.
 var typeEls = document.getElementsByName("restaurant_type");
-localStorage.setItem("checkedType", "restaurant");
+// localStorage.setItem("checkedType", "restaurant");
 function getRadioInput() {
   for (i = 0; i < typeEls.length; i++) {
     if (typeEls[i].checked) {
@@ -218,14 +218,13 @@ function createMarker(place) {
 }
 var pass = document.querySelector("#pass");
 
-pass.addEventListener("click",passFunction);
-function passFunction(){
+pass.addEventListener("click", passFunction);
+function passFunction() {
   var muffin = document.querySelector("#noChoice");
-var cookies =document.createElement("p");
-cookies.textContent=randomRestaurant.name;
-muffin.appendChild(cookies);
-generateRandomRestaurant();
-
+  var cookies = document.createElement("p");
+  cookies.textContent = randomRestaurant.name;
+  muffin.appendChild(cookies);
+  generateRandomRestaurant();
 }
 
 // TODO: Display those restaurants in the Restaurants Tile.
