@@ -45,3 +45,10 @@ html {
 #noChoice {
   overflow-y: auto;
 }
+
+@media (max-width: 426px) {
+  /* Apply flex-direction: column; when screen is smaller than 426px */
+  .modal-card-body {
+    flex-direction: column;
+  }
+}
