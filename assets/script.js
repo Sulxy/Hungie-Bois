@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
 
   function openModal($el) {
-    $el.classList.add("is-active");
+    $el.class.add("is-active");
   }
 
   function closeModal($el) {
@@ -146,7 +146,7 @@ function generateRandomRestaurant() {
   var randomIndex = Math.floor(Math.random() * restaurants.length);
   var randomRestaurant = restaurants[randomIndex];
   document.getElementById("random-restaurant").textContent =
-    randomRestaurant.name;
+    randomRestaurant.name + "?";
   console.log(randomRestaurant);
 }
 
