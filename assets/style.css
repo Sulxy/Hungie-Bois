@@ -1,6 +1,7 @@
 /* Is the pizza background. Makes sure it is one image, streatched to meet screen size.*/
 html {
-  background-image: url("/assets/pizza-background-image.jpg");
+  display: block;
+  background-image: url("pizza-background-image.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
