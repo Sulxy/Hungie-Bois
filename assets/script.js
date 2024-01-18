@@ -211,23 +211,18 @@ function createMarker(place) {
     position: place.geometry.location,
   });
 
-  // google.maps.event.addListener(marker, "click", () => {
-  //   infowindow.setContent(place.name || "");
-  //   infowindow.open(map);
-  // });
+  
 }
 var pass = document.querySelector("#pass");
 
 pass.addEventListener("click",passFunction);
 function passFunction(){
-  var muffin = document.querySelector("#noChoice");
-var cookies =document.createElement("p");
-cookies.textContent=randomRestaurant.name;
-muffin.appendChild(cookies);
+  var noPick = document.querySelector("#noChoice");
+var tags =document.createElement("p");
+tags.textContent=randomRestaurant.name;
+noPick.appendChild(tags);
 generateRandomRestaurant();
-
+tags.classList.add("has-text-warning");
+tags.classList.add("subtitle");
 }
 
-// TODO: Display those restaurants in the Restaurants Tile.
-// TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
-// TODO: When a restaurant is Yassed, load the chosenrestaurants.html page and display the restaurant name, address, and website.
