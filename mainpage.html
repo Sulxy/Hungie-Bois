@@ -23,7 +23,7 @@
               </article>
             </div>
 
-            <div class="tile is-parent has-text-centered is-6 is-vertical">
+            <div id="mainDiv" class="tile is-parent has-text-centered is-6 is-vertical">
               <article class="tile is-child box has-background-danger" class="yass-pass">
                 <p  class="subtitle has-text-warning">Do you want...</p>
                 <p id="random-restaurant" class="title has-text-warning has-text-centered">Random Restaurant</p>
@@ -31,8 +31,18 @@
                   <button id="yass" class="button is-danger has-text-warning is-inverted is-outlined is-responsive yass">Yass!</button>
                   <button id="pass" class="button is-danger has-text-warning is-inverted is-outlined is-responsive pass">Pass!</button>
                 </div>
-                <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive websiteLink">Link to Website</button>
+                <!-- <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive websiteLink">Link to Website</button> -->
                 <div id="map"></div>
+              </article>
+            </div>
+            <div id="restaurantDiv" class="tile is-parent has-text-centered is-6 is-vertical is-hidden">
+              <article class="tile is-child box has-background-danger" id="chosen-rest">
+                <p class="subtitle has-text-warning">You Chose:</p>
+                <p class="title has-text-warning" id="restName">Restaurant Name</p>
+                <p class="subtitle" id="restAddress">Restaurant Address</p>
+                <div>
+                <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive"><a id="websiteLink" href=""></a>Link to Website</button>
+                  </div>
               </article>
             </div>
             <div class="tile is-parent is-vertical weather">

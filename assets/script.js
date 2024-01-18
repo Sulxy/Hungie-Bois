@@ -87,6 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
   var modal = document.querySelector(".modal");
   parametersBtn.addEventListener("click", () => {
     modal.classList.add("is-active");
+    mainDiv.classList.remove("is-hidden");
+    restaurantDiv.classList.add("is-hidden");
   });
 });
 var latitude;
@@ -141,15 +143,30 @@ function getUserLocation() {
 
 passedList = [];
 var restaurants;
-
+var randomRestaurant;
+var mainDiv = document.getElementById("mainDiv");
+var restaurantDiv = document.getElementById("restaurantDiv");
+var restaurantName = document.getElementById("restName");
+var restaurantAddress = document.getElementById("restAddress");
+var linkAnchor = document.getElementById("websiteLink");
+// restaurantDiv.style.display = "none";
 function generateRandomRestaurant() {
   var randomIndex = Math.floor(Math.random() * restaurants.length);
-  var randomRestaurant = restaurants[randomIndex];
+  randomRestaurant = restaurants[randomIndex];
   document.getElementById("random-restaurant").textContent =
     randomRestaurant.name + "?";
   console.log(randomRestaurant);
 }
 
+function yassFunction() {
+  restaurantName.textContent = randomRestaurant.name + "!!!";
+  restaurantAddress.textContent = randomRestaurant.vicinity;
+  // linkAnchor.setAttribute("href", randomRestaurant.)
+  mainDiv.classList.add("is-hidden");
+  restaurantDiv.classList.remove("is-hidden");
+}
+var yassBtn = document.getElementById("yass");
+yassBtn.addEventListener("click", yassFunction);
 var map;
 var service;
 var infowindow;
