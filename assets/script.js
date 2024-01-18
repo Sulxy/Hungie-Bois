@@ -1,15 +1,29 @@
-var googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM";
-var openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd";
-var modal = document.querySelector(".modal");
-var weatherTileInfo = document.querySelector(".weather-card");
+// Global Variables
+var googleAPI_KEY = "AIzaSyB7lvXekjOPfNWfvpV7yq_2YZhWcf9WROM"; // Google API Key
+var openweatherAPI_KEY = "ccf8e872f741b16e805da56b3ea2b6cd"; // OpenWeather API Key
+var modal = document.querySelector(".modal"); // Modal element
+var weatherTileInfo = document.querySelector(".weather-card"); // Weather tile element
+var typeEls = document.getElementsByName("restaurant_type"); // Restaurant type checkboxes
+var latitude; // User's latitude
+var longitude; // User's longitude
+var passedList = []; // List of passed restaurants
+var restaurants; // Array of nearby restaurants
+var randomRestaurant; // Randomly selected restaurant
+var mainDiv = document.getElementById("mainDiv"); // Main div element
+var restaurantDiv = document.getElementById("restaurantDiv"); // Restaurant div element
+var restaurantName = document.getElementById("restName"); // Restaurant name element
+var restaurantAddress = document.getElementById("restAddress"); // Restaurant address element
+var linkAnchor = document.getElementById("websiteLink"); // Website link element
+var map; // Google Maps object
+var service; // Google Maps service
+var infowindow; // Google Maps info window
+
 // -----------------------------------------------------------------
 
 // get user Input on checkboxes.
-var typeEls = document.getElementsByName("restaurant_type");
 function getRadioInput() {
   for (i = 0; i < typeEls.length; i++) {
     if (typeEls[i].checked) {
-      console.log(typeEls[i]);
       localStorage.setItem("checkedType", typeEls[i].value);
     }
   }
@@ -72,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add a click event to run the getUserLocation function close the modal when the .user-location button is clicked
+  // Add a click event to run the getUserLocation function, and close the modal when the .user-location button is clicked
   var locationButton = document.querySelector(".user-location");
   if (locationButton) {
     locationButton.addEventListener("click", () => {
@@ -90,8 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     restaurantDiv.classList.add("is-hidden");
   });
 });
-var latitude;
-var longitude;
+
 // Copied from Josh's Weather Dashboard and modified to meet the requirements of this assignment
 function getUserLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
@@ -125,7 +138,7 @@ function getUserLocation() {
         weatherTile.innerHTML = `
           <div class="tile is-parent is-vertical has-text-centered weather">
           <article class="tile is-child box has-background-danger weather-card">
-          <p class="title has-text-warning has-text-centered">Weather</p>
+          <p class="title has-text-warning has-text-centered"><u>Weather</u></p>
           <figure class="image is-128x128 is-inline-block"><img src="https://openweathermap.org/img/wn/${weatherIcon}.png" alt="weather icon" id="weatherIcon"></figure>
           <p class="content has-text-warning has-text-centered">${weatherDescription}</p>
           <p class="content has-text-warning has-text-centered">Date: ${currentDate}</p>
@@ -136,40 +149,39 @@ function getUserLocation() {
         `;
       })
       .catch((error) => {
-        console.log("Error:", error);
       });
   });
 }
 
-passedList = [];
-var restaurants;
-var randomRestaurant;
-var mainDiv = document.getElementById("mainDiv");
-var restaurantDiv = document.getElementById("restaurantDiv");
-var restaurantName = document.getElementById("restName");
-var restaurantAddress = document.getElementById("restAddress");
-var linkAnchor = document.getElementById("websiteLink");
-// restaurantDiv.style.display = "none";
+// Function to generate a random restaurant
 function generateRandomRestaurant() {
   var randomIndex = Math.floor(Math.random() * restaurants.length);
   randomRestaurant = restaurants[randomIndex];
   document.getElementById("random-restaurant").textContent =
     randomRestaurant.name + "?";
-  console.log(randomRestaurant);
 }
 
+// Function to display the selected restaurant
 function yassFunction() {
   restaurantName.textContent = randomRestaurant.name + "!!!";
   restaurantAddress.textContent = randomRestaurant.vicinity;
-  // linkAnchor.setAttribute("href", randomRestaurant.)
   mainDiv.classList.add("is-hidden");
   restaurantDiv.classList.remove("is-hidden");
 }
+
+// Event listener for the "Yass" button
 var yassBtn = document.getElementById("yass");
 yassBtn.addEventListener("click", yassFunction);
-var map;
-var service;
-var infowindow;
+
+// Function to create a marker on the map
+function createMarker(place) {
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+}
 
 // Map function to find nearby restaurants
 function initMap() {
@@ -194,7 +206,6 @@ function initMap() {
       restaurants = results;
       // call random Restaurant function AFTER restaurants array is defined.
       generateRandomRestaurant();
-      console.log(restaurants);
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
       }
@@ -203,16 +214,8 @@ function initMap() {
   });
 }
 
-function createMarker(place) {
-  if (!place.geometry || !place.geometry.location) return;
-
-  const marker = new google.maps.Marker({
-    map,
-    position: place.geometry.location,
-  });
-}
+// Event listener for the "Pass" button
 var pass = document.querySelector("#pass");
-
 pass.addEventListener("click", passFunction);
 function passFunction() {
   var noPick = document.querySelector("#noChoice");
@@ -222,4 +225,5 @@ function passFunction() {
   generateRandomRestaurant();
   tags.classList.add("has-text-warning");
   tags.classList.add("subtitle");
+  tags.classList.add("has-text-centered");
 }
