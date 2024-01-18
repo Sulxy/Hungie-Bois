@@ -1,3 +1,4 @@
+/* Is the pizza background. Makes sure it is one image, streatched to meet screen size.*/
 html {
   background-image: url("/assets/pizza-background-image.jpg");
   background-size: cover;
@@ -6,12 +7,14 @@ html {
   height: 100%;
 }
 
+/* Header of Modal */
 .modal-card-head {
   display: flex;
   text-align: center;
   align-items: center;
 }
 
+/* Body of Modal */
 .modal-card-body {
   display: flex;
   flex-wrap: wrap;
@@ -20,11 +23,13 @@ html {
   width: 100%;
 }
 
+/* Footer of Modal */
 .modal-card-foot {
   display: flex;
   justify-content: center;
 }
 
+/* Top Header of page */
 #landing-page-header {
   font-size: 2rem;
   font-weight: bold;
@@ -35,8 +40,7 @@ html {
   text-align: center;
 }
 
-#map {
-  width: 500px;
-  height: 350px;
-  display: none;
+/* Scroll wheel in Passed Tile */
+#noChoice {
+  overflow-y: auto;
 }

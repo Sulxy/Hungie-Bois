@@ -10,19 +10,23 @@
   </head>
 
     <body class="bg-img" alt="yellow background with a pizza in the bottom right corner">
-
+        <!--Title of Page-->
         <header>
             <h1 class="landing-page" id="landing-page-header">Hungie?</h1>
         </header>
+        
 <div class="m-3">
+
+        <!--Passed Tile-->
         <div class="tile is-ancestor">
             <div class="tile is-parent is-vertical">
               <article id="noChoice" class="tile is-child box has-background-danger">
-                <p class="title has-text-warning has-text-centered">Passed</p>
+                <p class="title has-text-warning has-text-centered"><u>Passed</u></p>
                 <p class="subtitle has-text-warning has-text-centered passedChoice"></p>
               </article>
             </div>
 
+          <!--Center Tile: Loads first-->
             <div id="mainDiv" class="tile is-parent has-text-centered is-6 is-vertical">
               <article class="tile is-child box has-background-danger" class="yass-pass">
                 <p  class="subtitle has-text-warning">Do you want...</p>
@@ -31,23 +35,25 @@
                   <button id="yass" class="button is-danger has-text-warning is-inverted is-outlined is-responsive yass">Yass!</button>
                   <button id="pass" class="button is-danger has-text-warning is-inverted is-outlined is-responsive pass">Pass!</button>
                 </div>
-                <!-- <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive websiteLink">Link to Website</button> -->
                 <div id="map"></div>
               </article>
             </div>
+
+          <!--Center Tile: Loads when a restaurant is chosen-->
             <div id="restaurantDiv" class="tile is-parent has-text-centered is-6 is-vertical is-hidden">
               <article class="tile is-child box has-background-danger" id="chosen-rest">
                 <p class="subtitle has-text-warning">You Chose:</p>
                 <p class="title has-text-warning" id="restName">Restaurant Name</p>
                 <p class="subtitle" id="restAddress">Restaurant Address</p>
                 <div>
-                <!-- <button class="subtitle button is-danger has-text-warning is-inverted is-outlined is-responsive"><a id="websiteLink" href=""></a>Link to Website</button> -->
                   </div>
               </article>
             </div>
+
+            <!--Weather Tile: information is dynamically loaded with JS-->
             <div class="tile is-parent is-vertical weather">
               <article class="tile is-child box has-background-danger weather-card">
-                <p class="title has-text-warning has-text-centered">Weather</p>
+                <p class="title has-text-warning has-text-centered"><u>Weather</u></p>
                 <p class="content has-text-warning has-text-centered">Description</p>
                 <p class="content has-text-warning has-text-centered">(YYYY-MM-DD)</p>
                 <p class="content has-text-warning has-text-centered">Temp: __°F</p>
@@ -59,21 +65,25 @@
           </div>
         </div>
 
+        <!--Search Parameters Button-->
           <div class="columns is-centered">
             <div class="buttons is-centered">
                 <button class="button is-danger has-text-warning is-responsive" id="paramBtn">Search Parameters</button>
             </div>
         </div>
 
+      <!--Modal-->
       <div class="modal is-active"> 
         <div class="modal-background">
         </div>
+
           <div class="modal-card">
             <header class="modal-card-head has-background-warning">
                 <p class="modal-card-title has-text-danger">Search Parameters</p>
                 <button class="delete" aria-label="close"></button>
             </header>
-
+          
+            <!--User Input for Search Parameters-->
             <section class="modal-card-body has-background-warning">
               <input type="radio" name="restaurant_type" value="delivery">
               <label for="delivery">Delivery</label>
@@ -86,6 +96,8 @@
               <input type="radio" name="restaurant_type" value="restaurant">
               <label for="restaurant">Gimme Whatever!</label>
             </section>
+
+            <!--Submit Button for Search Parameters-->
             <footer class="modal-card-foot has-background-warning">
                 <div class="buttons"></div>
                     <div class="buttons">
