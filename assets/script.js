@@ -194,11 +194,16 @@ function createMarker(place) {
     position: place.geometry.location,
   });
 
+  
+
+  
   // google.maps.event.addListener(marker, "click", () => {
   //   infowindow.setContent(place.name || "");
   //   infowindow.open(map);
   // });
 }
+
+
 
 // TODO: Display those restaurants in the Restaurants Tile.
 // TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
