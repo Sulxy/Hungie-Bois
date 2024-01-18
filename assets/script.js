@@ -217,12 +217,12 @@ var pass = document.querySelector("#pass");
 
 pass.addEventListener("click",passFunction);
 function passFunction(){
-  var muffin = document.querySelector("#noChoice");
-var cookies =document.createElement("p");
-cookies.textContent=randomRestaurant.name;
-muffin.appendChild(cookies);
+  var noPick = document.querySelector("#noChoice");
+var tags =document.createElement("p");
+tags.textContent=randomRestaurant.name;
+noPick.appendChild(tags);
 generateRandomRestaurant();
-cookies.classList.add("has-text-warning");
-cookies.classList.add("subtitle");
+tags.classList.add("has-text-warning");
+tags.classList.add("subtitle");
 }
 
