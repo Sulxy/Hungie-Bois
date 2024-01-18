@@ -1,9 +1,30 @@
-<H1> Hungie Bois project </H1>
 
-<H2> Project for UTSA Full Stack Development Bootcamp </H2>
+Hungie Bois project
+This website was designed with your hunger in mind! It uses your current location and your preferred choice of restaurant (Dine-In, Drive-Through, Sit Down, Carryout) and provides you with a curated selection that is presented to you 1-by-1! Why think when you can Yass or Pass?
 
-<H2> Features </H2>
+Uses OpenWeather API, and Google Places API to populate tiles.
 
-<H6> This application will track weather and distance within a 25 mile radius with giving you restaurant options base on your zipcode. While using a modal to track if you prefer delivery, pick up, or drive-thru. </H6>
+Features
+Tracks current location, and updates when the page is refreshed, or the search parameters button is clicked.
+Presents user with a curated selection of restaurants within 15 miles of their location.
+Also has a Gimme Whatever! option that will present the user with a truly random selection to choose from.
+Displays current weather conditions in an easy to read format. 
+Restaurants that have been Passed, will populate to the side so that the user can reconsider past options. 
+When a restaurant is chosen, an address is presented to the user. This can be easily copied and pasted into the users preferred travelling app. (Google Maps, Waze, Apple Maps, etc).
 
-(We will add more once we get closer to the finished product)
+Screenshots of Webpage
+#### Fullscreen
+
+#### Laptop
+
+#### Tablet
+
+#### Mobile
+
+Link to Website
+https://jenryhenry.github.io/Hungie-Bois/
+
+Link to Repository
+https://github.com/JenryHenry/Hungie-Bois
+
+Credits
