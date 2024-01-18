@@ -6,10 +6,10 @@ var weatherTileInfo = document.querySelector(".weather-card");
 
 // get user Input on checkboxes.
 var typeEls = document.getElementsByName("restaurant_type");
-localStorage.setItem("checkedType", "restaurant");
 function getRadioInput() {
   for (i = 0; i < typeEls.length; i++) {
     if (typeEls[i].checked) {
+      console.log(typeEls[i]);
       localStorage.setItem("checkedType", typeEls[i].value);
     }
   }
@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     locationButton.addEventListener("click", () => {
       getUserLocation();
       closeModal();
-      getRadioInput();
     });
   }
 
@@ -98,6 +97,7 @@ function getUserLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
+    getRadioInput();
     // Call map function after latitude and longitude are retrieved
     initMap();
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${openweatherAPI_KEY}`;
@@ -211,16 +211,11 @@ function createMarker(place) {
     position: place.geometry.location,
   });
 
-  
-
-  
   // google.maps.event.addListener(marker, "click", () => {
   //   infowindow.setContent(place.name || "");
   //   infowindow.open(map);
   // });
 }
-
-
 
 // TODO: Display those restaurants in the Restaurants Tile.
 // TODO: When a restaurant is Passed, move the restaurants name to the Passed tile.
