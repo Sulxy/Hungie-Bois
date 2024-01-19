@@ -35,3 +35,4 @@ Link to Repository
 https://github.com/JenryHenry/Hungie-Bois
 
 Credits
+Thank you to Joseph, Daniel, Flavio, and Josh for learning to work together and complete this project. 
