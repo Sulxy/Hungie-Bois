@@ -214,8 +214,16 @@ function initMap() {
   });
 }
 
-// Event listener for the "Pass" button
+function createMarker(place) {
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+}
 var pass = document.querySelector("#pass");
+
 pass.addEventListener("click", passFunction);
 function passFunction() {
   var noPick = document.querySelector("#noChoice");
