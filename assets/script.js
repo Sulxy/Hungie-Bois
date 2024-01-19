@@ -233,4 +233,5 @@ function passFunction() {
   generateRandomRestaurant();
   tags.classList.add("has-text-warning");
   tags.classList.add("subtitle");
+  tags.classList.add("has-text-centered");
 }
