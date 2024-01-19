@@ -14,12 +14,19 @@ When a restaurant is chosen, an address is presented to the user. This can be ea
 
 Screenshots of Webpage
 #### Fullscreen
+![Fullscreen+modal](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/778ad371-6d73-4ee9-b1fd-6b80d5149cfb)
 
 #### Laptop
+![Laptop+Populated Tiles](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/63ddac8d-4fd3-4f4a-aafb-f75fc78131ff)
 
 #### Tablet
+![Tablet w Filled Pass Tile 01](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/f2f73cc7-07f6-4012-a3ee-c66aa9342714)
+![Tablet w Filled Pass Tile 02](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/e59229e9-dcaa-4e45-be84-936b0354883f)
 
 #### Mobile
+![Mobile+Modal](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/bf9347da-218d-4188-ae85-f00ab4ae61ff)
+![Phone 01](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/74c7921b-5df0-439d-9d34-6dba5983184d)
+![Phone 02](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/2a3b629a-a0b6-4fbf-ae61-4f47ee0df918)
 
 Link to Website
 https://jenryhenry.github.io/Hungie-Bois/
