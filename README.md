@@ -29,9 +29,11 @@ Screenshots of Webpage
 ![Phone 02](https://github.com/JenryHenry/Hungie-Bois/assets/149080702/2a3b629a-a0b6-4fbf-ae61-4f47ee0df918)
 
 Link to Website
+
 https://jenryhenry.github.io/Hungie-Bois/
 
 Link to Repository
+
 https://github.com/JenryHenry/Hungie-Bois
 
 Credits
