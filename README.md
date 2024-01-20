@@ -32,7 +32,7 @@ Link to Website
 
 https://jenryhenry.github.io/Hungie-Bois/
 
-Link to Repository
+Link to original group project repository
 
 https://github.com/JenryHenry/Hungie-Bois
 
