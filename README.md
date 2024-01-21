@@ -37,4 +37,4 @@ Link to original group project repository
 https://github.com/JenryHenry/Hungie-Bois
 
 Credits
-Thank you to Joseph, Daniel, Flavio, and Josh for learning to work together and complete this project. 
+Thank you to Joseph, Daniel, and Josh for learning to work together and complete this project. 
